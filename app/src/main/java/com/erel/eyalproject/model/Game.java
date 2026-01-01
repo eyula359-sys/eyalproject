@@ -73,5 +73,7 @@ public class Game {
                 ", date='" + date + '\'' +
                 ", hour='" + hour + '\'' +
                 '}';
+        return gameName; // או כל שדה שתרצה שיופיע בספינר
+
     }
 }

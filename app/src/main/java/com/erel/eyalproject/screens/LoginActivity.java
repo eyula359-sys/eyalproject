@@ -49,6 +49,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
+        boolean isLoggedIn = sharedpreferences.getBoolean("isLoggedIn", false);
+
+        if (isLoggedIn) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
 
 
 
@@ -108,17 +118,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(mainIntent);
 
         }
-
-
-
     }
-
-
 
     private void loginUser(String email, String password) {
         databaseService.LoginUser(email, password, new DatabaseService.DatabaseCallback<String>() {
             /// Callback method called when the operation is completed
-            /// @param //email  & password is logged in
+            /// @param // email  & password is logged in
             @Override
             public void onCompleted(String  uid) {
                 Log.d(TAG, "onCompleted: User logged in: " + uid);

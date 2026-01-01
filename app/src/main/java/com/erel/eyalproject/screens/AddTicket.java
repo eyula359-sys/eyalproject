@@ -13,12 +13,19 @@ import com.erel.eyalproject.model.Game;
 import com.erel.eyalproject.services.DatabaseService;
 
 import java.util.ArrayList;
+import java.util.List;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
+
 
 public class AddTicket extends AppCompatActivity implements View.OnClickListener {
 
     EditText text_Game, text_Price, text_Section, text_Row, text_Seat, text_Currency;
     Button btnAddTick;
     private DatabaseService databaseService;
+    Spinner spinnerGames;
+    ArrayAdapter<Game> gamesAdapter;
+
 
     ArrayList<Game> games = new ArrayList<>();
 
@@ -29,8 +36,23 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_game);
+        spinnerGames = findViewById(R.id.spinnergames);
+
 
         databaseService = DatabaseService.getInstance();
+
+        gamesAdapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                games
+        );
+
+        gamesAdapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item
+        );
+
+        spinnerGames.setAdapter(gamesAdapter);
+
 
 
         btnAddTick = findViewById(R.id.btnAddTick);
@@ -49,11 +71,26 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
     protected void onResume() {
         super.onResume();
 
-        databaseService.
+        databaseService.getGamesList(new DatabaseService.DatabaseCallback<List<Game>>() {
+            @Override
+            public void onCompleted(List<Game> gamesFromDb) {
+                games.clear();
+                games.addAll(gamesFromDb);
+                gamesAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+            }
+        });
     }
+
 
     @Override
     public void onClick(View v) {
+
+        String gameId = selectedGame.getId();
+
 
         String game = text_Game.getText().toString();
         String price = text_Price.getText().toString();
