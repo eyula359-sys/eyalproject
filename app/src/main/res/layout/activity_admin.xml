@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.Admin_activity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="69dp"
+        android:layout_marginBottom="69dp"
+        android:fontFamily="@font/secular_one_regular"
+        android:text="דף מנהל"
+        android:textSize="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAllTickets"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAllTickets"
+        android:layout_width="193dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="29dp"
+        android:backgroundTint="#E4360E"
+        android:fontFamily="@font/secular_one_regular"
+        android:text="כל הכרטיסים"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAllUsers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnAllUsers"
+        android:layout_width="193dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="#E4360E"
+        android:fontFamily="@font/secular_one_regular"
+        android:text="משתמשים"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAllSales"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAllTickets" />
+
+    <Button
+        android:id="@+id/btnAllSales"
+        android:layout_width="193dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="173dp"
+        android:backgroundTint="#E4360E"
+        android:fontFamily="@font/secular_one_regular"
+        android:text="מכירות"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAllUsers" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

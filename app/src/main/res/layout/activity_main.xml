@@ -5,48 +5,55 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".screens.MainActivity">
 
     <TextView
-        android:layout_width="67dp"
-        android:layout_height="37dp"
-        android:text="WELCOME"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="227dp"
+        android:layout_height="77dp"
+        android:fontFamily="@font/secular_one_regular"
+        android:text="ברוך הבא"
+        android:textColor="#1A2F6B"
+        android:textSize="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.142" />
+        tools:layout_editor_absoluteY="84dp" />
 
     <Button
         android:id="@+id/btnsign"
         android:layout_width="169dp"
         android:layout_height="103dp"
-        android:layout_marginTop="488dp"
-        android:text="Sign up"
+        android:backgroundTint="#E4360E"
+        android:ellipsize="none"
+        android:fontFamily="@font/secular_one_regular"
+        android:onClick="goRegister"
+        android:text="הרשמה"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="485dp" />
 
     <Button
         android:id="@+id/btnLog"
         android:layout_width="169dp"
         android:layout_height="103dp"
-        android:layout_marginTop="364dp"
-        android:text="Log in"
+        android:backgroundTint="#E4360E"
+        android:ellipsize="none"
+        android:fontFamily="@font/secular_one_regular"
+        android:onClick="goLogin"
+        android:singleLine="true"
+        android:textSize="18dp"
+        android:text="התחברות"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="364dp" />
 
     <ImageView
         android:id="@+id/ivLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteY="200dp"
         tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

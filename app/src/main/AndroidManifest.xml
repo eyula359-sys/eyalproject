@@ -12,10 +12,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Eyalproject">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".screens.UsersListActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".adapters.UserAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".screens.AddGame"
+            android:exported="false" />
+        <activity
+            android:name=".screens.AddTicket"
+            android:exported="false" />
+        <activity
+            android:name=".screens.Admin_activity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.UserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

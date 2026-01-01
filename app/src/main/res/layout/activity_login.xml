@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.LoginActivity">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="67dp"
+        android:fontFamily="@font/secular_one_regular"
+        android:text="התחברות"
+        android:textColor="#1A2F6B"
+        android:textSize="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/et_login_email"
+        android:layout_width="255dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="326dp"
+        android:hint="email"
+        android:fontFamily="@font/secular_one_regular"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_login_password"
+        android:layout_width="256dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginBottom="52dp"
+        android:hint="password"
+        android:fontFamily="@font/secular_one_regular"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_login_email" />
+
+    <Button
+        android:id="@+id/btn_login_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:backgroundTint="#E4360E"
+        android:fontFamily="@font/secular_one_regular"
+        android:text="Login"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_login_register"
+        app:layout_constraintStart_toStartOf="@+id/et_login_password" />
+
+    <Button
+        android:id="@+id/tv_login_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:onClick="goRegister"
+        android:backgroundTint="#E4360E"
+        android:fontFamily="@font/secular_one_regular"
+        android:layout_marginBottom="157dp"
+        android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_login_login"
+        tools:ignore="OnClick" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

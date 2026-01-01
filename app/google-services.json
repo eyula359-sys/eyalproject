@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "186829190858",
+    "firebase_url": "https://eyalproject-4dfde-default-rtdb.firebaseio.com",
+    "project_id": "eyalproject-4dfde",
+    "storage_bucket": "eyalproject-4dfde.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186829190858:android:6c8af6b88aa8502d6fe633",
+        "android_client_info": {
+          "package_name": "com.erel.eyalproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqY1rDZW_2koL-e54xquvvDeS9F2oOnoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

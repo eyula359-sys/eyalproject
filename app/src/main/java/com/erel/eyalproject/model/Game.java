@@ -1,8 +1,10 @@
 package com.erel.eyalproject.model;
 
+import androidx.annotation.NonNull;
+
 public class Game {
 
-    protected String id_game;
+    protected String id;
 
     protected String home_team;
     protected String away_team;
@@ -10,12 +12,12 @@ public class Game {
     protected String hour;
 
 
-    public Game(String away_team, String date, String home_team, String hour, String id_game) {
+    public Game(String away_team, String date, String home_team, String hour, String id) {
         this.away_team = away_team;
         this.date = date;
         this.home_team = home_team;
         this.hour = hour;
-        this.id_game = id_game;
+        this.id = id;
     }
 
     public Game() {
@@ -53,19 +55,20 @@ public class Game {
         this.hour = hour;
     }
 
-    public String getId_game() {
-        return id_game;
+    public String getId() {
+        return id;
     }
 
-    public void setId_game(String id_game) {
-        this.id_game = id_game;
+    public void setId(String id) {
+        this.id = id;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Game{" +
                 "away_team='" + away_team + '\'' +
-                ", id_game='" + id_game + '\'' +
+                ", id='" + id + '\'' +
                 ", home_team='" + home_team + '\'' +
                 ", date='" + date + '\'' +
                 ", hour='" + hour + '\'' +

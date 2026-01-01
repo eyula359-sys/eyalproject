@@ -8,9 +8,9 @@ public class User {
     protected String email;
     protected String phone;
     protected String password;
-    protected  double sumRate;
-    protected  double rate;
-    protected  int numberRate;
+    protected double sumRate;
+    protected double rate;
+    protected int numberRate;
 
     public User(String id, String fname, String lname, String phone, String email, String password) {
         this.id = id;

@@ -5,17 +5,17 @@ public class Ticket {
     protected String ticket_id;
 
     protected Game game;
-    protected Integer price;
+    protected double price;
     protected String section;
-    protected Integer row;
-    protected Integer seat;
+    protected int row;
+    protected int seat;
     protected char currency;
     protected boolean is_available;
-    protected String ticket_type;
+
 
      protected User user;
 
-    public Ticket(char currency, Game game, boolean is_available, Integer price, Integer row, Integer seat, String section, String ticket_id, String ticket_type, User user) {
+    public Ticket(char currency, Game game, boolean is_available, double price, int row, int seat, String section, String ticket_id, User user) {
         this.currency = currency;
         this.game = game;
         this.is_available = is_available;
@@ -24,11 +24,8 @@ public class Ticket {
         this.seat = seat;
         this.section = section;
         this.ticket_id = ticket_id;
-        this.ticket_type = ticket_type;
         this.user = user;
     }
-
-
 
     public Ticket() {
     }
@@ -49,7 +46,7 @@ public class Ticket {
         this.is_available = is_available;
     }
 
-    public Integer getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -105,12 +102,16 @@ public class Ticket {
         this.ticket_id = ticket_id;
     }
 
-    public String getTicket_type() {
-        return ticket_type;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public void setTicket_type(String ticket_type) {
-        this.ticket_type = ticket_type;
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setSeat(int seat) {
+        this.seat = seat;
     }
 
     public User getUser() {
@@ -132,7 +133,7 @@ public class Ticket {
                 ", row=" + row +
                 ", seat=" + seat +
                 ", is_available=" + is_available +
-                ", ticket_type='" + ticket_type + '\'' +
+
                 ", user=" + user +
                 '}';
     }

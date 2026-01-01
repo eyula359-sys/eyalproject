@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.AddGame">
+
+    <TextView
+        android:id="@+id/textgame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="27dp"
+        android:fontFamily="@font/secular_one_regular"
+        android:text="הוספת משחק"
+        android:textSize="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_hometeam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/text_hometeam"
+        android:layout_width="202dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="22dp"
+        android:fontFamily="@font/secular_one_regular"
+        android:hint="Home team"
+        app:layout_constraintBottom_toTopOf="@+id/text_awayteam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textgame" />
+
+    <EditText
+        android:id="@+id/text_awayteam"
+        android:layout_width="202dp"
+        android:layout_height="0dp"
+
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/secular_one_regular"
+        android:hint="Awey team"
+        app:layout_constraintBottom_toTopOf="@+id/text_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_hometeam" />
+
+    <EditText
+        android:id="@+id/text_date"
+        android:layout_width="202dp"
+        android:layout_height="0dp"
+
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/secular_one_regular"
+        android:hint="Date of the game"
+        app:layout_constraintBottom_toTopOf="@+id/text_hour"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_awayteam" />
+
+    <EditText
+        android:id="@+id/text_hour"
+        android:layout_width="202dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="47dp"
+        android:fontFamily="@font/secular_one_regular"
+        android:hint="Hour"
+        app:layout_constraintBottom_toTopOf="@+id/btnAdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_date" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="@font/secular_one_regular"
+        android:text="הוסף"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_hour" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,77 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".screens.RegisterActivity">
+
+
+    <TextView
+        android:id="@+id/edresign"
+        android:layout_width="187dp"
+        android:layout_height="93dp"
+        android:fontFamily="@font/secular_one_regular"
+        android:text="הרשמה"
+        android:textColor="#1A2F6B"
+        android:textSize="60sp"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="54dp" />
+
+    <EditText
+        android:id="@+id/etLname"
+        android:layout_width="206dp"
+        android:layout_height="50dp"
+        android:hint="Last Name"
+        android:fontFamily="@font/secular_one_regular"
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="293dp" />
+
+    <EditText
+        android:id="@+id/etFname"
+        android:layout_width="206dp"
+        android:layout_height="50dp"
+        android:hint="First Name"
+        android:fontFamily="@font/secular_one_regular"
+        tools:layout_editor_absoluteX="103dp"
+        tools:layout_editor_absoluteY="222dp" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="206dp"
+        android:layout_height="50dp"
+        android:hint="Email"
+        android:fontFamily="@font/secular_one_regular"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="103dp"
+        tools:layout_editor_absoluteY="371dp" />
+
+    <EditText
+        android:id="@+id/etPhone"
+        android:layout_width="206dp"
+        android:layout_height="50dp"
+        android:hint="Phone"
+        android:fontFamily="@font/secular_one_regular"
+        android:inputType="phone"
+        tools:layout_editor_absoluteX="103dp"
+        tools:layout_editor_absoluteY="444dp" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="206dp"
+        android:layout_height="50dp"
+        android:hint="Password"
+        android:fontFamily="@font/secular_one_regular"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="103dp"
+        tools:layout_editor_absoluteY="520dp" />
+
+    <Button
+        android:id="@+id/btnrgn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign"
+        android:backgroundTint="#E4360E"
+        android:fontFamily="@font/secular_one_regular"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="613dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
