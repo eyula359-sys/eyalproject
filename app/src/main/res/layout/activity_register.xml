@@ -10,72 +10,94 @@
 
     <TextView
         android:id="@+id/edresign"
-        android:layout_width="187dp"
-        android:layout_height="93dp"
+        android:layout_width="189dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginBottom="75dp"
         android:fontFamily="@font/secular_one_regular"
         android:text="הרשמה"
         android:textColor="#1A2F6B"
         android:textSize="60sp"
-        tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="54dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etFname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etLname"
         android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:hint="Last Name"
+        android:layout_height="0dp"
+        android:layout_marginBottom="28dp"
         android:fontFamily="@font/secular_one_regular"
-        tools:layout_editor_absoluteX="102dp"
-        tools:layout_editor_absoluteY="293dp" />
+        android:hint="Last Name"
+        app:layout_constraintBottom_toTopOf="@+id/etEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFname" />
 
     <EditText
         android:id="@+id/etFname"
         android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:hint="First Name"
+        android:layout_height="0dp"
+        android:layout_marginBottom="21dp"
         android:fontFamily="@font/secular_one_regular"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="222dp" />
+        android:hint="First Name"
+        app:layout_constraintBottom_toTopOf="@+id/etLname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edresign" />
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:hint="Email"
+        android:layout_height="0dp"
+        android:layout_marginBottom="23dp"
         android:fontFamily="@font/secular_one_regular"
+        android:hint="Email"
         android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="371dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etPhone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etLname" />
 
     <EditText
         android:id="@+id/etPhone"
         android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:hint="Phone"
+        android:layout_height="0dp"
+        android:layout_marginBottom="26dp"
         android:fontFamily="@font/secular_one_regular"
+        android:hint="Phone"
         android:inputType="phone"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="444dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:hint="Password"
+        android:layout_height="0dp"
+        android:layout_marginBottom="43dp"
         android:fontFamily="@font/secular_one_regular"
+        android:hint="Password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="520dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnrgn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPhone" />
 
     <Button
         android:id="@+id/btnrgn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign"
+        android:layout_marginBottom="70dp"
         android:backgroundTint="#E4360E"
         android:fontFamily="@font/secular_one_regular"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="613dp" />
+        android:text="Sign"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

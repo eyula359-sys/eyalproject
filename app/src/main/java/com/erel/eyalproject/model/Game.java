@@ -66,14 +66,7 @@ public class Game {
     @NonNull
     @Override
     public String toString() {
-        return "Game{" +
-                "away_team='" + away_team + '\'' +
-                ", id='" + id + '\'' +
-                ", home_team='" + home_team + '\'' +
-                ", date='" + date + '\'' +
-                ", hour='" + hour + '\'' +
-                '}';
-        return gameName; // או כל שדה שתרצה שיופיע בספינר
-
+        return home_team + " vs " + away_team +
+                " | " + date + " " + hour;
     }
 }

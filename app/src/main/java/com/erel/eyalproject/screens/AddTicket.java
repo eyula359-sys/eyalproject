@@ -20,7 +20,7 @@ import android.widget.ArrayAdapter;
 
 public class AddTicket extends AppCompatActivity implements View.OnClickListener {
 
-    EditText text_Game, text_Price, text_Section, text_Row, text_Seat, text_Currency;
+    EditText text_Price, text_Section, text_Row, text_Seat, text_Currency;
     Button btnAddTick;
     private DatabaseService databaseService;
     Spinner spinnerGames;
@@ -35,7 +35,7 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_add_game);
+        setContentView(R.layout.activity_add_ticket);
         spinnerGames = findViewById(R.id.spinnergames);
 
 
@@ -56,7 +56,6 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
 
 
         btnAddTick = findViewById(R.id.btnAddTick);
-        text_Game = findViewById(R.id.text_Game);
         text_Price = findViewById(R.id.text_Price);
         text_Section = findViewById(R.id.text_Section);
         text_Row = findViewById(R.id.text_Row);
@@ -89,10 +88,7 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
 
-        String gameId = selectedGame.getId();
-
-
-        String game = text_Game.getText().toString();
+        Game selectedGame = (Game) spinnerGames.getSelectedItem();
         String price = text_Price.getText().toString();
         String section = text_Section.getText().toString();
         String row = text_Row.getText().toString();
