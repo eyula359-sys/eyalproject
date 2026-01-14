@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onCompleted(String  uid) {
                 Log.d(TAG, "onCompleted: User logged in: " + uid);
 
-
+                Intent mainIntent;
 
 
                 SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -139,12 +139,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 editor.commit();
 
+                if(email.equals("eyal090408@gmail.com") && (password.equals("eyal090408_"))){
+                     mainIntent = new Intent(LoginActivity.this, Admin_activity.class);
 
-                /// save the user data to shared preferences
-                // SharedPreferencesUtil.saveUser(LoginActivity.this, user);
-                /// Redirect to main activity and clear back stack to prevent user from going back to login screen
-                Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-                /// Clear the back stack (clear history) and start the MainActivity
+                }
+                else{
+
+                    /// save the user data to shared preferences
+                    // SharedPreferencesUtil.saveUser(LoginActivity.this, user);
+                    /// Redirect to main activity and clear back stack to prevent user from going back to login screen
+                     mainIntent = new Intent(LoginActivity.this, UserActivity.class);
+                    /// Clear the back stack (clear history) and start the MainActivity
+                }
                 mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(mainIntent);
             }

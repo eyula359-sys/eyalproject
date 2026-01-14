@@ -56,7 +56,10 @@ public class UsersListActivity extends AppCompatActivity {
         });
         usersList.setAdapter(userAdapter);
     }
-
+    public void onCompleted(List<User> users) {
+        Log.d(TAG, "Users loaded: " + users.size());
+        userAdapter.setUserList(users);
+    }
 
     @Override
     protected void onResume() {

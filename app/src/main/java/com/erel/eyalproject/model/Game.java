@@ -12,15 +12,31 @@ public class Game {
     protected String hour;
 
 
-    public Game(String away_team, String date, String home_team, String hour, String id) {
+    public Game(String id, String home_team, String away_team, String date, String hour) {
+        this.id = id;
+        this.home_team = home_team;
         this.away_team = away_team;
         this.date = date;
-        this.home_team = home_team;
         this.hour = hour;
-        this.id = id;
     }
 
     public Game() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getHome_team() {
+        return home_team;
+    }
+
+    public void setHome_team(String home_team) {
+        this.home_team = home_team;
     }
 
     public String getAway_team() {
@@ -39,14 +55,6 @@ public class Game {
         this.date = date;
     }
 
-    public String getHome_team() {
-        return home_team;
-    }
-
-    public void setHome_team(String home_team) {
-        this.home_team = home_team;
-    }
-
     public String getHour() {
         return hour;
     }
@@ -55,13 +63,6 @@ public class Game {
         this.hour = hour;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     @NonNull
     @Override

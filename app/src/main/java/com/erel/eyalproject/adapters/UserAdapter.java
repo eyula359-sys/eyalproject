@@ -18,49 +18,42 @@ import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
-
     public interface OnUserClickListener {
         void onUserClick(User user);
         void onLongUserClick(User user);
     }
 
-    private final List<User> userList;
-    private final OnUserClickListener onUserClickListener;
-    public UserAdapter(@Nullable final OnUserClickListener onUserClickListener) {
-        userList = new ArrayList<>();
-        this.onUserClickListener = onUserClickListener;
+    private final List<User> userList = new ArrayList<>();
+    private final OnUserClickListener listener;
+
+    public UserAdapter(OnUserClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
     @Override
-    public UserAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_user, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         User user = userList.get(position);
-        if (user == null) return;
 
-        holder.tvName.setText(user.getFname() + " " +user.getLname());
+        holder.tvName.setText(user.getFname() + " " + user.getLname());
         holder.tvEmail.setText(user.getEmail());
         holder.tvPhone.setText(user.getPhone());
-        holder.tvPassword.setText(user.getPassword());
 
         holder.itemView.setOnClickListener(v -> {
-            if (onUserClickListener != null) {
-                onUserClickListener.onUserClick(user);
-            }
+            if (listener != null) listener.onUserClick(user);
         });
 
         holder.itemView.setOnLongClickListener(v -> {
-            if (onUserClickListener != null) {
-                onUserClickListener.onLongUserClick(user);
-            }
+            if (listener != null) listener.onLongUserClick(user);
             return true;
         });
-
     }
 
     @Override
@@ -74,32 +67,34 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void addUser(User user) {
-        userList.add(user);
-        notifyItemInserted(userList.size() - 1);
-    }
-    public void updateUser(User user) {
-        int index = userList.indexOf(user);
-        if (index == -1) return;
-        userList.set(index, user);
-        notifyItemChanged(index);
-    }
-
-    public void removeUser(User user) {
-        int index = userList.indexOf(user);
-        if (index == -1) return;
-        userList.remove(index);
-        notifyItemRemoved(index);
+    public void updateUser(User updatedUser) {
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getId().equals(updatedUser.getId())) {
+                userList.set(i, updatedUser);
+                notifyItemChanged(i);
+                return;
+            }
+        }
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvEmail, tvPhone, tvPassword;
-        public ViewHolder(@NonNull View itemView) {
+    public void removeUserById(String userId) {
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getId().equals(userId)) {
+                userList.remove(i);
+                notifyItemRemoved(i);
+                return;
+            }
+        }
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tvName, tvEmail, tvPhone;
+
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
             tvEmail = itemView.findViewById(R.id.etEmail);
             tvPhone = itemView.findViewById(R.id.etPhone);
-            tvPassword = itemView.findViewById(R.id.etPassword);
         }
     }
 }
