@@ -404,7 +404,7 @@ public class DatabaseService {
     /// @see DatabaseCallback
     /// @see Ticket
     public void createNewTicket(@NotNull final Ticket ticket, @Nullable final DatabaseCallback<Void> callback) {
-        writeData(TICKET_PATH + "/" + ticket.getTicket_id(), ticket, callback);
+        writeData(TICKET_PATH + "/" + ticket.getid(), ticket, callback);
     }
 
     /// get a ticket from the database

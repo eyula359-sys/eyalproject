@@ -1,6 +1,8 @@
 package com.erel.eyalproject.screens;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.erel.eyalproject.R;
 import com.erel.eyalproject.model.Game;
+import com.erel.eyalproject.model.Ticket;
 import com.erel.eyalproject.services.DatabaseService;
 
 import java.util.ArrayList;
@@ -24,10 +27,12 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
     Button btnAddTick;
     private DatabaseService databaseService;
     Spinner spinnerGames;
+
+    ArrayList<Game> games= new ArrayList<>();
     ArrayAdapter<Game> gamesAdapter;
 
 
-    ArrayList<Game> games = new ArrayList<>();
+
 
 
 
@@ -40,6 +45,7 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
 
 
         databaseService = DatabaseService.getInstance();
+
 
         gamesAdapter = new ArrayAdapter<>(
                 this,
@@ -54,6 +60,22 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
         spinnerGames.setAdapter(gamesAdapter);
 
 
+        databaseService.getGamesList(new DatabaseService.DatabaseCallback<List<Game>>() {
+            @Override
+            public void onCompleted(List<Game> gameList) {
+                games.clear();
+                games.addAll(gameList);
+                gamesAdapter.notifyDataSetChanged();
+
+
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+
+            }
+        });
+
 
         btnAddTick = findViewById(R.id.btnAddTick);
         text_Price = findViewById(R.id.text_Price);
@@ -64,6 +86,16 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
 
 
         btnAddTick.setOnClickListener(this);
+        Button backToUser = findViewById(R.id.backToUser);
+        {
+
+            backToUser.setOnClickListener(v -> {
+                Intent intent = new Intent(AddTicket.this, UserActivity.class);
+                startActivity(intent);
+            });
+
+
+        }
     }
 
     @Override
@@ -88,12 +120,34 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
 
+        String ticketId=databaseService.generateTicketId();
         Game selectedGame = (Game) spinnerGames.getSelectedItem();
         String price = text_Price.getText().toString();
         String section = text_Section.getText().toString();
         String row = text_Row.getText().toString();
         String seat = text_Seat.getText().toString();
         String currency = text_Currency.getText().toString();
+        Ticket newTicket= new Ticket();
+
+        databaseService.createNewTicket(newTicket, new DatabaseService.DatabaseCallback<Void>() {
+            @Override
+            public void onCompleted(Void object) {
+                Log.d("TAG", "createTicketInDatabase: Ticket created successfully");
+                Intent intent = new Intent(AddTicket.this, UserActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+                Log.e("TAG", "createTicketInDatabase: Ticket created not successfully");
+
+            }
+        });
+
+
     }
+
+
+
 
 }

@@ -37,38 +37,50 @@ public class AddGame extends AppCompatActivity implements View.OnClickListener {
         text_hour = findViewById(R.id.text_hour);
 
         btnAdd.setOnClickListener(this);
+
+
+        Button backToAdmin = findViewById(R.id.backToAdmin);
+
+        backToAdmin.setOnClickListener(v -> {
+            Intent intent = new Intent(AddGame.this, Admin_activity.class);
+            startActivity(intent);
+        });
+
     }
 
     @Override
     public void onClick(View v) {
 
-        String homeTeam = text_hometeam.getText().toString();
-        String aweyTeam = text_awayteam.getText().toString();
-        String Date = text_date.getText().toString();
-        String Hour = text_hour.getText().toString();
+        if (v == btnAdd) {
 
-        String gameId = databaseService.generateGameId();
+            String homeTeam = text_hometeam.getText().toString();
+            String aweyTeam = text_awayteam.getText().toString();
+            String Date = text_date.getText().toString();
+            String Hour = text_hour.getText().toString();
 
-
-        Game newGame = new Game(gameId, homeTeam, aweyTeam, Date, Hour);
-
-
-        databaseService.createNewGame(newGame, new DatabaseService.DatabaseCallback<Void>() {
-            @Override
-            public void onCompleted(Void object) {
-                Log.d("TAG", "createGameInDatabase: Game created successfully");
-                Intent intent = new Intent(AddGame.this, Admin_activity.class);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onFailed(Exception e) {
-                Log.e("TAG", "createGameInDatabase: User created not successfully");
-
-            }
-        });
+            String gameId = databaseService.generateGameId();
 
 
+            Game newGame = new Game(gameId, homeTeam, aweyTeam, Date, Hour);
+
+
+            databaseService.createNewGame(newGame, new DatabaseService.DatabaseCallback<Void>() {
+                @Override
+                public void onCompleted(Void object) {
+                    Log.d("TAG", "createGameInDatabase: Game created successfully");
+                    Intent intent = new Intent(AddGame.this, Admin_activity.class);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onFailed(Exception e) {
+                    Log.e("TAG", "createGameInDatabase: User created not successfully");
+
+                }
+            });
+
+
+        }
     }
 }
 
