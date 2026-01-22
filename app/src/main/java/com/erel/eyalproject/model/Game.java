@@ -20,7 +20,13 @@ public class Game {
         this.hour = hour;
     }
 
+
+
     public Game() {
+    }
+
+    public String getGameName() {
+        return home_team+" vs " + away_team;
     }
 
     public String getId() {
@@ -64,10 +70,12 @@ public class Game {
     }
 
 
-    @NonNull
     @Override
     public String toString() {
-        return home_team + " vs " + away_team +
-                " | " + date + " " + hour;
+        return
+                home_team  +" vs "+
+                 away_team  +"  //  "+
+               date + " "+
+                 hour;
     }
 }

@@ -2,40 +2,52 @@ package com.erel.eyalproject.model;
 
 public class Ticket {
 
-    protected String id;
+    protected String ticketId;
 
     protected Game game;
     protected double price;
     protected String section;
-    protected int row;
-    protected int seat;
-    protected char currency;
+    protected String row;
+    protected String seat;
+    protected String currency;
     protected boolean is_available;
 
     protected User user;
 
-    public Ticket(String id, Game game, double price, String section, int row, int seat, char currency, boolean is_available, User user) {
-        this.id = id;
-
+    public Ticket(String currency, Game game, boolean is_available, double price, String row, String seat, String section, String ticketId, User user) {
+        this.currency = currency;
         this.game = game;
+        this.is_available = is_available;
         this.price = price;
-        this.section = section;
         this.row = row;
         this.seat = seat;
-        this.currency = currency;
-        this.is_available = is_available;
+        this.section = section;
+        this.ticketId = ticketId;
         this.user = user;
     }
 
     public Ticket() {
     }
 
-    public String getid() {
-        return id;
+    public Ticket(String ticketId, Game selectedGame, double price, String section, String strow, String stseat, String currency, boolean b, User currentUser) {
+
+        this.currency = currency;
+        this.game = selectedGame;
+        this.is_available = b;
+        this.price = price;
+        this.row = strow;
+        this.seat = stseat;
+        this.section = section;
+        this.ticketId = ticketId;
+        this.user = currentUser;
     }
 
-    public void setid(String id) {
-        this.id = id;
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public Game getGame() {
@@ -46,12 +58,36 @@ public class Ticket {
         this.game = game;
     }
 
+    public boolean getIs_available() {
+        return is_available;
+    }
+
+    public void setIs_available(boolean is_available) {
+        this.is_available = is_available;
+    }
+
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getRow() {
+        return row;
+    }
+
+    public void setRow(String row) {
+        this.row = row;
+    }
+
+    public String getSeat() {
+        return seat;
+    }
+
+    public void setSeat(String seat) {
+        this.seat = seat;
     }
 
     public String getSection() {
@@ -62,35 +98,12 @@ public class Ticket {
         this.section = section;
     }
 
-    public Integer getRow() {
-        return row;
+    public String getTicketId() {
+        return ticketId;
     }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
-    public Integer getSeat() {
-        return seat;
-    }
-
-    public void setSeat(int seat) {
-        this.seat = seat;
-    }
-
-    public char getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(char currency) {
-        this.currency = currency;
-    }
-
-    public Boolean getIs_available() {
-        return is_available;
-    }
-
-    public void setIs_available(Boolean is_available) {
-        this.is_available = is_available;
+    public void setTicketId(String ticketId) {
+        this.ticketId = ticketId;
     }
 
     public User getUser() {
@@ -104,15 +117,14 @@ public class Ticket {
     @Override
     public String toString() {
         return "Ticket{" +
-                ", id='" + id + '\'' +
+                "currency='" + currency + '\'' +
+                ", id='" + ticketId + '\'' +
                 ", game=" + game +
                 ", price=" + price +
                 ", section='" + section + '\'' +
                 ", row=" + row +
                 ", seat=" + seat +
-                "currency=" + currency +
                 ", is_available=" + is_available +
-
                 ", user=" + user +
                 '}';
     }

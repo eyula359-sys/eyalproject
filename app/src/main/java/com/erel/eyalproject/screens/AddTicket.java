@@ -13,7 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.erel.eyalproject.R;
 import com.erel.eyalproject.model.Game;
 import com.erel.eyalproject.model.Ticket;
+import com.erel.eyalproject.model.User;
 import com.erel.eyalproject.services.DatabaseService;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +35,8 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
 
 
 
-
-
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,24 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
 
 
         databaseService = DatabaseService.getInstance();
+
+        String userId = mAuth.getUid();
+
+        databaseService.getUser(userId, new DatabaseService.DatabaseCallback<User>() {
+            @Override
+            public void onCompleted(User user) {
+
+
+                currentUser=new User(user);
+
+
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+
+            }
+        });
 
 
         gamesAdapter = new ArrayAdapter<>(
@@ -119,17 +139,26 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-
-        String ticketId=databaseService.generateTicketId();
+        String ticketId = databaseService.generateTicketId();
         Game selectedGame = (Game) spinnerGames.getSelectedItem();
-        String price = text_Price.getText().toString();
+        String stprice = text_Price.getText().toString();
         String section = text_Section.getText().toString();
-        String row = text_Row.getText().toString();
-        String seat = text_Seat.getText().toString();
+        String strow = text_Row.getText().toString();
+        String stseat = text_Seat.getText().toString();
         String currency = text_Currency.getText().toString();
-        Ticket newTicket= new Ticket();
 
-        databaseService.createNewTicket(newTicket, new DatabaseService.DatabaseCallback<Void>() {
+
+        double price=Double.parseDouble(stprice);
+
+
+        Ticket newTicket= new Ticket(ticketId,selectedGame,price,section,strow,stseat,currency,true,currentUser);
+
+
+
+
+
+
+            databaseService.createNewTicket(newTicket, new DatabaseService.DatabaseCallback<Void>() {
             @Override
             public void onCompleted(Void object) {
                 Log.d("TAG", "createTicketInDatabase: Ticket created successfully");

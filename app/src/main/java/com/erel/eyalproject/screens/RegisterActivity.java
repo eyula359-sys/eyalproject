@@ -152,5 +152,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
+
+        Button btnGoToLogin = findViewById(R.id.btnGoToLogin);
+        {
+
+            btnGoToLogin.setOnClickListener(v -> {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+            });
     }
-}
+}}

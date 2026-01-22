@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fieldimage"
     tools:context=".screens.UserActivity">
 
 
@@ -16,6 +17,8 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/secular_one_regular"
         android:text="דף משתמש"
+        android:background="@drawable/edittext_rounded_bg"
+        android:textColor="@color/white"
         android:textSize="60dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAddTicket"
         app:layout_constraintEnd_toEndOf="parent"

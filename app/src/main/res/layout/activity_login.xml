@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fieldimage"
     tools:context=".screens.LoginActivity">
 
 
@@ -12,39 +13,44 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="67dp"
+        android:layout_marginTop="73dp"
         android:fontFamily="@font/secular_one_regular"
         android:text="התחברות"
-        android:textColor="#1A2F6B"
-        android:textSize="50dp"
+        android:textColor="#F8F8FA"
+        android:textSize="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <EditText
         android:id="@+id/et_login_email"
         android:layout_width="255dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="326dp"
-        android:hint="email"
+        android:layout_height="57dp"
+        android:background="@drawable/edittext_rounded_bg"
         android:fontFamily="@font/secular_one_regular"
+        android:hint="email"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_login_password"
-        android:layout_width="256dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="66dp"
-        android:layout_marginBottom="52dp"
-        android:hint="password"
+        android:layout_width="0dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="77dp"
+        android:background="@drawable/edittext_rounded_bg"
         android:fontFamily="@font/secular_one_regular"
-        app:layout_constraintBottom_toTopOf="@+id/btn_login_login"
+        android:hint="password"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/et_login_email" />
+        app:layout_constraintTop_toBottomOf="@+id/et_login_email" />
 
     <Button
         android:id="@+id/btn_login_login"
@@ -62,13 +68,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
-        android:onClick="goRegister"
+        android:layout_marginTop="51dp"
         android:backgroundTint="#E4360E"
         android:fontFamily="@font/secular_one_regular"
-        android:layout_marginBottom="157dp"
+        android:onClick="goRegister"
         android:text="Register"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_login_login"
+        app:layout_constraintTop_toBottomOf="@+id/et_login_password"
         tools:ignore="OnClick" />
 
 

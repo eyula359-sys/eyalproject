@@ -37,5 +37,12 @@ public class Admin_activity extends AppCompatActivity {
             Intent intent = new Intent(Admin_activity.this, AddGame.class);
             startActivity(intent);
         });
+
+        Button btnAllTickets = findViewById(R.id.btnAllTickets);
+
+        btnAllTickets.setOnClickListener(v -> {
+            Intent intent = new Intent(Admin_activity.this, AllTicketsList.class);
+            startActivity(intent);
+        });
     }
 }

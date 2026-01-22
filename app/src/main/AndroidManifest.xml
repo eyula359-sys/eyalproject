@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Eyalproject">
         <activity
+            android:name=".adapters.ticketAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".screens.AllTicketsList"
+            android:exported="false" />
+        <activity
             android:name=".screens.UsersListActivity"
             android:exported="false" />
         <activity
