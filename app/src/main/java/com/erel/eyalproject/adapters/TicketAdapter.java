@@ -1,9 +1,14 @@
 package com.erel.eyalproject.adapters;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.erel.eyalproject.R;
 import com.erel.eyalproject.model.Ticket;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +61,19 @@ public class TicketAdapter   extends RecyclerView.Adapter<TicketAdapter.ViewHold
             if (listener != null) listener.onLongTicketClick(ticket);
             return true;
         });
+
+        holder.btnGoChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    openWhatsApp(
+                            v.getContext(),
+                            ticket.getUser().getPhone(),   // לדוגמה: 972501234567
+                            "היי, אני מתעניין בכרטיס למשחק 😊"
+                    );
+                }
+
+    });
     }
 
     @Override
@@ -91,6 +110,8 @@ public class TicketAdapter   extends RecyclerView.Adapter<TicketAdapter.ViewHold
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvTicketName, tvTicketSeat, tvTicketRow, tvTicketPrice, tvTicketSection;
 
+        Button btnGoChat;
+
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTicketName = itemView.findViewById(R.id.tvTicketName);
@@ -98,6 +119,27 @@ public class TicketAdapter   extends RecyclerView.Adapter<TicketAdapter.ViewHold
             tvTicketRow = itemView.findViewById(R.id.tvTicketRow);
             tvTicketPrice = itemView.findViewById(R.id.tvTicketPrice);
             tvTicketSection = itemView.findViewById(R.id.tvTicketSection);
+            btnGoChat=itemView.findViewById(R.id.btnChat);
+        }
+    }
+
+
+    private void openWhatsApp(Context context, String phoneNumber, String message) {
+        try {
+            String url = "https://wa.me/" + phoneNumber;
+
+            if (message != null && !message.isEmpty()) {
+                url += "?text=" + URLEncoder.encode(message, "UTF-8");
+            }
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            intent.setPackage("com.whatsapp");
+
+            context.startActivity(intent);
+
+        } catch (Exception e) {
+            Toast.makeText(context, "לא ניתן לפתוח WhatsApp", Toast.LENGTH_SHORT).show();
         }
     }
 }

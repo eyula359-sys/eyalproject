@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Eyalproject">
         <activity
-            android:name=".adapters.ticketAdapter"
+            android:name=".screens.ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.SearchTicketsActivity"
             android:exported="false" />
         <activity
             android:name=".screens.AllTicketsList"
             android:exported="false" />
         <activity
             android:name=".screens.UsersListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".adapters.UserAdapter"
             android:exported="false" />
         <activity
             android:name=".screens.AddGame"

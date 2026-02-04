@@ -29,5 +29,12 @@ public class UserActivity extends AppCompatActivity {
 
         });
 
+        Button btnSearchTicket = findViewById(R.id.btnSearchTicket);
+
+        btnSearchTicket.setOnClickListener(v -> {
+            Intent intent = new Intent(UserActivity.this, SearchTicketsActivity.class);
+            startActivity(intent);
+        });
+
     }
 }
