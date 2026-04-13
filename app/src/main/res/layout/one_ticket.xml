@@ -25,9 +25,9 @@
         android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="34dp"
         android:layout_marginEnd="18dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="34dp"
         android:text="TextView"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/tvTicketSection"
@@ -41,7 +41,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="45dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="24dp"
         android:text="TextView"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/btnChat"
@@ -53,42 +53,58 @@
         android:id="@+id/tvTicketRow"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="227dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="58dp"
         android:text="TextView"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/tvTicketSection"
+        app:layout_constraintBottom_toTopOf="@+id/btnPay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvTicketPrice"
-        app:layout_constraintTop_toBottomOf="@+id/tvTicketName" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvTicketSeat"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="80dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="250dp"
-        android:layout_marginBottom="21dp"
         android:text="TextView"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/btnChat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvTicketSection"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTicketRow" />
 
     <Button
         android:id="@+id/btnChat"
-        android:layout_width="215dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="42dp"
+        android:layout_width="145dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="14dp"
         android:layout_marginBottom="28dp"
         android:backgroundTint="@color/black"
         android:fontFamily="@font/secular_one_regular"
         android:text="צור קשר"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnPay"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTicketSeat" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTicketSection" />
+
+    <Button
+        android:id="@+id/btnPay"
+        android:layout_width="143dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="93dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/secular_one_regular"
+        android:text="תשלום בביט"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnChat"
+        app:layout_constraintTop_toBottomOf="@+id/tvTicketRow" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

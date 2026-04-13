@@ -17,8 +17,8 @@
         android:layout_marginBottom="102dp"
         android:fontFamily="@font/secular_one_regular"
         android:text="דף מנהל"
-        android:textSize="60dp"
         android:textColor="@color/white"
+        android:textSize="60dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAllTickets"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
     <Button
         android:id="@+id/btnAllTickets"
         android:layout_width="193dp"
-        android:layout_height="0dp"
+        android:layout_height="80dp"
         android:layout_marginBottom="21dp"
         android:backgroundTint="#E4360E"
         android:fontFamily="@font/secular_one_regular"
@@ -41,7 +41,7 @@
     <Button
         android:id="@+id/btnAllUsers"
         android:layout_width="193dp"
-        android:layout_height="0dp"
+        android:layout_height="80dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="#E4360E"
         android:fontFamily="@font/secular_one_regular"
@@ -56,29 +56,14 @@
     <Button
         android:id="@+id/btnAddNewGame"
         android:layout_width="193dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#E4360E"
         android:fontFamily="@font/secular_one_regular"
         android:text="הוספת משחק"
         android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAllSales"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAllUsers" />
-
-    <Button
-        android:id="@+id/btnAllSales"
-        android:layout_width="193dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="107dp"
-        android:backgroundTint="#E4360E"
-        android:fontFamily="@font/secular_one_regular"
-        android:text="מכירות"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddNewGame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

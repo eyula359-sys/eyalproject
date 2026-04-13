@@ -74,6 +74,31 @@ public class TicketAdapter   extends RecyclerView.Adapter<TicketAdapter.ViewHold
                 }
 
     });
+
+        holder.btnPay.setOnClickListener(v -> {
+
+            String phone = ticket.getUser().getPhone();
+
+            Uri uri = Uri.parse("bit://send?phone=" + phone);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+
+            if (intent.resolveActivity(v.getContext().getPackageManager()) != null) {
+                v.getContext().startActivity(intent);
+            } else {
+
+                Intent launchIntent = v.getContext()
+                        .getPackageManager()
+                        .getLaunchIntentForPackage("com.bitplay");
+
+                if (launchIntent != null) {
+                    v.getContext().startActivity(launchIntent);
+                } else {
+                    Toast.makeText(v.getContext(),
+                            "אפליקציית Bit לא מותקנת",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -110,7 +135,7 @@ public class TicketAdapter   extends RecyclerView.Adapter<TicketAdapter.ViewHold
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvTicketName, tvTicketSeat, tvTicketRow, tvTicketPrice, tvTicketSection;
 
-        Button btnGoChat;
+        Button btnGoChat, btnPay;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -120,6 +145,7 @@ public class TicketAdapter   extends RecyclerView.Adapter<TicketAdapter.ViewHold
             tvTicketPrice = itemView.findViewById(R.id.tvTicketPrice);
             tvTicketSection = itemView.findViewById(R.id.tvTicketSection);
             btnGoChat=itemView.findViewById(R.id.btnChat);
+            btnPay = itemView.findViewById(R.id.btnPay);
         }
     }
 
