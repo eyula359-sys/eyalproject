@@ -76,6 +76,7 @@
         android:fontFamily="@font/secular_one_regular"
         android:text="My profile"
         android:textSize="18dp"
+        android:onClick="goUserProfile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

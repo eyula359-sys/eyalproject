@@ -12,6 +12,25 @@ public class User {
     protected double rate;
     protected int numberRate;
 
+    protected Boolean isAdmin;
+
+    public User(String id, String fname, String lname, String phone, String email, String password, Boolean isAdmin) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.isAdmin = isAdmin;
+
+        this.numberRate = 0;
+
+        this.rate = 0.0;
+        this.sumRate = 0.0;
+
+        isAdmin=isAdmin;
+    }
+
     public User(String id, String fname, String lname, String phone, String email, String password) {
         this.id = id;
         this.fname = fname;
@@ -19,6 +38,7 @@ public class User {
         this.phone = phone;
         this.email = email;
         this.password = password;
+        this.isAdmin = isAdmin;
 
         this.numberRate = 0;
 
@@ -129,18 +149,27 @@ public class User {
         this.sumRate = sumRate;
     }
 
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "email='" + email + '\'' +
                 ", id='" + id + '\'' +
                 ", fname='" + fname + '\'' +
                 ", lname='" + lname + '\'' +
+                "email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", password='" + password + '\'' +
                 ", sumRate=" + sumRate +
                 ", rate=" + rate +
                 ", numberRate=" + numberRate +
+                ", isAdmin=" + isAdmin +
                 '}';
     }
 }

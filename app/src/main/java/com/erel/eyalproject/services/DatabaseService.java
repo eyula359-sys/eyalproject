@@ -305,6 +305,25 @@ public class DatabaseService {
         getData(USERS_PATH + "/" + uid, User.class, callback);
     }
 
+
+
+
+
+    /// get a user from the database
+    /// @param uid the id of the user to get
+    /// @param callback the callback to call when the operation is completed
+    ///               the callback will receive the user object
+    ///             if the operation fails, the callback will receive an exception
+    /// @see DatabaseCallback
+    /// @see User
+    public void getUser( @NotNull final DatabaseCallback<User> callback) {
+
+        FirebaseAuth auth=FirebaseAuth.getInstance();
+
+        String uid=auth.getUid();
+        getData(USERS_PATH + "/" + uid, User.class, callback);
+    }
+
     /// get all the users from the database
     /// @param callback the callback to call when the operation is completed
     ///              the callback will receive a list of user objects

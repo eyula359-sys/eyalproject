@@ -33,7 +33,7 @@ public class SearchTicketsActivity extends AppCompatActivity {
 
     Spinner spinnerGames;
     RecyclerView rvTickets;
-    Button btnBack;
+    Button btnBackToUser;
 
     TicketAdapter ticketAdapter;
 
@@ -148,8 +148,13 @@ public class SearchTicketsActivity extends AppCompatActivity {
 
         ticketAdapter.setTicketList(filteredTickets);
     }
+    {
+    btnBackToUser.setOnClickListener(v -> {
+        Intent intent = new Intent(SearchTicketsActivity.this, UserActivity.class);
+        startActivity(intent);
+    });
 
 
 
 
-}
+}}
