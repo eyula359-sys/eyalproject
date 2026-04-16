@@ -28,7 +28,7 @@ public class User {
         this.rate = 0.0;
         this.sumRate = 0.0;
 
-        isAdmin=isAdmin;
+        this.isAdmin=isAdmin;
     }
 
     public User(String id, String fname, String lname, String phone, String email, String password) {
@@ -44,6 +44,7 @@ public class User {
 
         this.rate = 0.0;
         this.sumRate = 0.0;
+        this.isAdmin=false;
     }
 
     public User(String id, String fname, String lname, String phone) {
@@ -72,6 +73,7 @@ public class User {
         this.phone = phone;
         this.rate = rate;
         this.sumRate = sumRate;
+
     }
 
     public User() {
@@ -156,6 +158,15 @@ public class User {
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
     }
+
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Boolean admin) {
+        isAdmin = admin;
+    }
+
 
     @Override
     public String toString() {

@@ -25,10 +25,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
     private static final String TAG = "UserProfileActivity";
 
-    private EditText etUserFirstName, etUserLastName, etUserEmail, etUserPhone, etUserPassword;
+    private EditText etUserFirstName, etUserLastName, etUserEmail, etUserPhone;
     private TextView tvUserDisplayName, tvUserDisplayEmail;
     private Button btnUpdateProfile, btnSignOut;
-    private View adminBadge;
+
     String userId;
     User selectedUser;
     boolean isCurrentUser = false;
@@ -65,37 +65,28 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
 
         // Initialize the EditText fields
-        etUserFirstName = findViewById(R.id.et_user_first_name);
-        etUserLastName = findViewById(R.id.et_user_last_name);
-        etUserEmail = findViewById(R.id.et_user_email);
-        etUserPhone = findViewById(R.id.et_user_phone);
-        etUserPassword = findViewById(R.id.et_user_password);
-        tvUserDisplayName = findViewById(R.id.tv_user_display_name);
-        tvUserDisplayEmail = findViewById(R.id.tv_user_display_email);
-        btnUpdateProfile = findViewById(R.id.btn_edit_profile);
-        btnSignOut = findViewById(R.id.btn_sign_out);
-        adminBadge = findViewById(R.id.admin_badge);
-
+        etUserFirstName = findViewById(R.id.etUserFirstName);
+        etUserLastName = findViewById(R.id.etUserLastName);
+        etUserEmail = findViewById(R.id.etUserEmail);
+        etUserPhone = findViewById(R.id.etUserPhone);
+        tvUserDisplayName = findViewById(R.id.tvUserDisplayName);
+        tvUserDisplayEmail = findViewById(R.id.tvUserDisplayEmail);
+        btnUpdateProfile = findViewById(R.id.btnUpdateProfile);
+        btnSignOut = findViewById(R.id.btnSignOut);
         btnUpdateProfile.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
 
-
-
-        // if the user is not the current user, hide the sign out button
-        if (!isCurrentUser) {
-            btnSignOut.setVisibility(View.GONE);
-        }
 
         showUserProfile();
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.btn_edit_profile) {
+        if(v.getId() == R.id.btnUpdateProfile) {
             updateUserProfile();
             return;
         }
-        if(v.getId() == R.id.btn_sign_out) {
+        if(v.getId() == R.id.btnSignOut) {
             signOut();
         }
     }
@@ -111,21 +102,15 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 etUserLastName.setText(user.getLname());
                 etUserEmail.setText(user.getEmail());
                 etUserPhone.setText(user.getPhone());
-                etUserPassword.setText(user.getPassword());
+
                 
                 // Update display fields
                 String displayName = user.getFname() + " " + user.getLname();
                 tvUserDisplayName.setText(displayName);
                 tvUserDisplayEmail.setText(user.getEmail());
 
-                // Show/hide admin badge based on user's admin status
-                if (user.getAdmin()) {
-                    adminBadge.setVisibility(View.VISIBLE);
-                    Log.d(TAG, "User is admin, showing admin badge");
-                } else {
-                    adminBadge.setVisibility(View.GONE);
-                    Log.d(TAG, "User is not admin, hiding admin badge");
-                }
+
+
             }
 
             @Override
@@ -137,10 +122,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         // disable the EditText fields if the user is not the current user
         if (!isCurrentUser) {
             etUserEmail.setEnabled(false);
-            etUserPassword.setEnabled(false);
+
         } else {
             etUserEmail.setEnabled(true);
-            etUserPassword.setEnabled(true);
+
             btnUpdateProfile.setVisibility(View.VISIBLE);
         }
     }
@@ -156,41 +141,26 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         String lastName = etUserLastName.getText().toString();
         String phone = etUserPhone.getText().toString();
         String email = etUserEmail.getText().toString();
-        String password = etUserPassword.getText().toString();
 
-//        if (!isValid(firstName, lastName, phone, email, password)) {
-//            Log.e(TAG, "Invalid input");
-//            return;
-//        }
+
 
         // Update the user object
         selectedUser.setFname(firstName);
         selectedUser.setLname(lastName);
         selectedUser.setPhone(phone);
         selectedUser.setEmail(email);
-        selectedUser.setPassword(password);
+
 
         // Update the user data in the authentication
         Log.d(TAG, "Updating user profile");
         Log.d(TAG, "Selected user UID: " + selectedUser.getId());
         Log.d(TAG, "Is current user: " + isCurrentUser);
         Log.d(TAG, "User email: " + selectedUser.getEmail());
-        Log.d(TAG, "User password: " + selectedUser.getPassword());
 
 
 
-        if (!isCurrentUser && !selectedUser.getAdmin()) {
-            Log.e(TAG, "Only the current user can update their profile");
-            Toast.makeText(this, "You can only update your own profile", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        else if (isCurrentUser) {
-            updateUserInDatabase(selectedUser);
-        }
-        else if (selectedUser.getAdmin()) {
-            // update the user in the database
-            updateUserInDatabase(selectedUser);
-        }
+        updateUserInDatabase(selectedUser);
+
     }
 
     private void updateUserInDatabase(User user) {

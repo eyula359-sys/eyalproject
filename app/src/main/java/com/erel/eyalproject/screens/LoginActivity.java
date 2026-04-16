@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 editor.commit();
 
-                if(email.equals("eyal090408@gmail.com") && (password.equals("eyal090408_"))){
+                if(email.equals("eyula35@gmail.com") && (password.equals("eyal090408_"))){
                      mainIntent = new Intent(LoginActivity.this, Admin_activity.class);
 
                 }
