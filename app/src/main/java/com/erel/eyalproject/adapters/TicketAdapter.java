@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,12 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.erel.eyalproject.R;
 import com.erel.eyalproject.model.Ticket;
+import com.erel.eyalproject.services.FavoriteTickets;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicketAdapter   extends RecyclerView.Adapter<TicketAdapter.ViewHolder> {
+public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder> {
 
     public interface OnTicketClickListener {
         void onTicketClick(Ticket ticket);
@@ -28,30 +30,53 @@ public class TicketAdapter   extends RecyclerView.Adapter<TicketAdapter.ViewHold
     }
 
     private final List<Ticket> ticketList = new ArrayList<>();
-    private final TicketAdapter.OnTicketClickListener listener;
+    private final OnTicketClickListener listener;
+    private final boolean showFavoriteButton;
 
-    public TicketAdapter(TicketAdapter.OnTicketClickListener listener) {
+    public TicketAdapter(OnTicketClickListener listener, boolean showFavoriteButton) {
         this.listener = listener;
+        this.showFavoriteButton = showFavoriteButton;
+    }
+
+    public TicketAdapter(OnTicketClickListener listener) {
+        this(listener, false);
     }
 
     @NonNull
     @Override
-    public TicketAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.one_ticket, parent, false);
-        return new TicketAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TicketAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Ticket ticket = ticketList.get(position);
+        Context context = holder.itemView.getContext();
 
-        holder.tvTicketName.setText(ticket.getGame().getGameName()+"" );
-        holder.tvTicketPrice.setText(ticket.getPrice()+"");
-        holder.tvTicketSeat.setText(ticket.getSeat());
+        holder.tvTicketName.setText(ticket.getGame().getGameName());
+        holder.tvTicketPrice.setText("מחיר - " + ticket.getPrice());
+        holder.tvTicketSeat.setText("מושב/ים מס' - " + ticket.getSeat());
+        holder.tvTicketSection.setText("אזור - " + ticket.getSection());
+        holder.tvTicketRow.setText("שורה - " + ticket.getRow());
 
-        holder.tvTicketSection.setText(ticket.getSection());
-        holder.tvTicketRow.setText(ticket.getRow());
+        if (showFavoriteButton) {
+            holder.btnFavorite.setVisibility(View.VISIBLE);
+            FavoriteTickets favManager = new FavoriteTickets(context);
+            updateFavoriteIcon(holder.btnFavorite, favManager.isFavorite(ticket.getTicketId()));
+
+            holder.btnFavorite.setOnClickListener(v -> {
+                favManager.toggleFavorite(ticket.getTicketId());
+                boolean isFav = favManager.isFavorite(ticket.getTicketId());
+                updateFavoriteIcon(holder.btnFavorite, isFav);
+                Toast.makeText(context,
+                        isFav ? "נוסף למועדפים ❤️" : "הוסר מהמועדפים",
+                        Toast.LENGTH_SHORT).show();
+            });
+        } else {
+            holder.btnFavorite.setVisibility(View.GONE);
+        }
 
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) listener.onTicketClick(ticket);
@@ -62,43 +87,35 @@ public class TicketAdapter   extends RecyclerView.Adapter<TicketAdapter.ViewHold
             return true;
         });
 
-        holder.btnGoChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                    openWhatsApp(
-                            v.getContext(),
-                            ticket.getUser().getPhone(),   // לדוגמה: 972501234567
-                            "היי, אני מתעניין בכרטיס למשחק 😊"
-                    );
-                }
-
-    });
+        holder.btnGoChat.setOnClickListener(v ->
+                openWhatsApp(context, ticket.getUser().getPhone(), "היי, אני מתעניין בכרטיס למשחק 😊")
+        );
 
         holder.btnPay.setOnClickListener(v -> {
-
             String phone = ticket.getUser().getPhone();
-
             Uri uri = Uri.parse("bit://send?phone=" + phone);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 
-            if (intent.resolveActivity(v.getContext().getPackageManager()) != null) {
-                v.getContext().startActivity(intent);
+            if (intent.resolveActivity(context.getPackageManager()) != null) {
+                context.startActivity(intent);
             } else {
-
-                Intent launchIntent = v.getContext()
-                        .getPackageManager()
+                Intent launchIntent = context.getPackageManager()
                         .getLaunchIntentForPackage("com.bitplay");
-
                 if (launchIntent != null) {
-                    v.getContext().startActivity(launchIntent);
+                    context.startActivity(launchIntent);
                 } else {
-                    Toast.makeText(v.getContext(),
-                            "אפליקציית Bit לא מותקנת",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "אפליקציית Bit לא מותקנת", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private void updateFavoriteIcon(ImageButton btn, boolean isFavorite) {
+        if (isFavorite) {
+            btn.setImageResource(android.R.drawable.btn_star_big_on);
+        } else {
+            btn.setImageResource(android.R.drawable.btn_star_big_off);
+        }
     }
 
     @Override
@@ -134,8 +151,8 @@ public class TicketAdapter   extends RecyclerView.Adapter<TicketAdapter.ViewHold
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvTicketName, tvTicketSeat, tvTicketRow, tvTicketPrice, tvTicketSection;
-
         Button btnGoChat, btnPay;
+        ImageButton btnFavorite;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -144,26 +161,22 @@ public class TicketAdapter   extends RecyclerView.Adapter<TicketAdapter.ViewHold
             tvTicketRow = itemView.findViewById(R.id.tvTicketRow);
             tvTicketPrice = itemView.findViewById(R.id.tvTicketPrice);
             tvTicketSection = itemView.findViewById(R.id.tvTicketSection);
-            btnGoChat=itemView.findViewById(R.id.btnChat);
+            btnGoChat = itemView.findViewById(R.id.btnChat);
             btnPay = itemView.findViewById(R.id.btnPay);
+            btnFavorite = itemView.findViewById(R.id.btnFavorite);
         }
     }
-
 
     private void openWhatsApp(Context context, String phoneNumber, String message) {
         try {
             String url = "https://wa.me/" + phoneNumber;
-
             if (message != null && !message.isEmpty()) {
                 url += "?text=" + URLEncoder.encode(message, "UTF-8");
             }
-
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
             intent.setPackage("com.whatsapp");
-
             context.startActivity(intent);
-
         } catch (Exception e) {
             Toast.makeText(context, "לא ניתן לפתוח WhatsApp", Toast.LENGTH_SHORT).show();
         }

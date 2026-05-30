@@ -12,9 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Eyalproject">
         <activity
+            android:name=".screens.FavoriteTicketsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.MyTicketsActivity"
+            android:exported="false" />
+        <activity
             android:name=".screens.UserProfileActivity"
             android:exported="false" />
-
         <activity
             android:name=".screens.SearchTicketsActivity"
             android:exported="false" />

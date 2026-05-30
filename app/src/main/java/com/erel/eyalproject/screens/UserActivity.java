@@ -15,35 +15,32 @@ import com.erel.eyalproject.R;
 
 public class UserActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_user);
 
-        Button btnAddTicket = findViewById(R.id.btnAddTicket);
-
-        btnAddTicket.setOnClickListener(v -> {
-            Intent intent = new Intent(UserActivity.this, AddTicket.class);
-            startActivity(intent);
-
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
         });
 
-        Button btnSearchTicket = findViewById(R.id.btnSearchTicket);
+        findViewById(R.id.btnAddTicket).setOnClickListener(v ->
+                startActivity(new Intent(UserActivity.this, AddTicket.class)));
 
-        btnSearchTicket.setOnClickListener(v -> {
-            Intent intent = new Intent(UserActivity.this, SearchTicketsActivity.class);
-            startActivity(intent);
-        });
+        findViewById(R.id.btnSearchTicket).setOnClickListener(v ->
+                startActivity(new Intent(UserActivity.this, SearchTicketsActivity.class)));
 
+        findViewById(R.id.btnMyTickets).setOnClickListener(v ->
+                startActivity(new Intent(UserActivity.this, MyTicketsActivity.class)));
 
-
+        findViewById(R.id.btnFavoriteTickets).setOnClickListener(v ->
+                startActivity(new Intent(UserActivity.this, FavoriteTicketsActivity.class)));
     }
 
     public void goUserProfile(View view) {
-        Intent intent = new Intent(UserActivity.this, UserProfileActivity.class);
-        startActivity(intent);
-
+        startActivity(new Intent(UserActivity.this, UserProfileActivity.class));
     }
 }

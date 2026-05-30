@@ -1,8 +1,6 @@
 package com.erel.eyalproject.screens;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +20,6 @@ import com.erel.eyalproject.model.Game;
 import com.erel.eyalproject.model.Ticket;
 import com.erel.eyalproject.services.DatabaseService;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +50,11 @@ public class SearchTicketsActivity extends AppCompatActivity {
         rvTickets = findViewById(R.id.rv_specificticket_list);
         backToUser = findViewById(R.id.backToUser);
 
+        backToUser.setOnClickListener(v -> {
+            Intent intent = new Intent(SearchTicketsActivity.this, UserActivity.class);
+            startActivity(intent);
+        });
+
         databaseService = DatabaseService.getInstance();
 
         rvTickets.setLayoutManager(new LinearLayoutManager(this));
@@ -62,16 +63,13 @@ public class SearchTicketsActivity extends AppCompatActivity {
             @Override
             public void onTicketClick(Ticket ticket) {
                 Log.d(TAG, "Ticket clicked: " + ticket);
-
-
-
             }
 
             @Override
             public void onLongTicketClick(Ticket ticket) {
                 Log.d(TAG, "Ticket long clicked: " + ticket);
             }
-        });
+        }, true);
 
         rvTickets.setAdapter(ticketAdapter);
 
@@ -97,8 +95,6 @@ public class SearchTicketsActivity extends AppCompatActivity {
                 ticketAdapter.setTicketList(allTickets);
             }
         });
-
-      //  btnBack.setOnClickListener(v -> finish());
     }
 
     @Override
@@ -125,7 +121,6 @@ public class SearchTicketsActivity extends AppCompatActivity {
                 Log.d(TAG, "Tickets loaded: " + tickets.size());
                 allTickets.clear();
                 allTickets.addAll(tickets);
-
                 ticketAdapter.setTicketList(allTickets);
             }
 
@@ -138,23 +133,12 @@ public class SearchTicketsActivity extends AppCompatActivity {
 
     private void filterTicketsByGame(String gameId) {
         ArrayList<Ticket> filteredTickets = new ArrayList<>();
-
         for (Ticket ticket : allTickets) {
             if (ticket.getGame() != null &&
                     ticket.getGame().getId().equals(gameId)) {
                 filteredTickets.add(ticket);
             }
         }
-
         ticketAdapter.setTicketList(filteredTickets);
     }
-    {
-    btnBackToUser.setOnClickListener(v -> {
-        Intent intent = new Intent(SearchTicketsActivity.this, UserActivity.class);
-        startActivity(intent);
-    });
-
-
-
-
-}}
+}

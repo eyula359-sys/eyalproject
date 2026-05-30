@@ -448,6 +448,28 @@ public class DatabaseService {
         getDataList(TICKET_PATH, Ticket.class, callback);
     }
 
+    /// get all tickets uploaded by the current logged-in user
+    public void getMyTickets(@NotNull final DatabaseCallback<List<Ticket>> callback) {
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        getTicketList(new DatabaseCallback<List<Ticket>>() {
+            @Override
+            public void onCompleted(List<Ticket> tickets) {
+                List<Ticket> myTickets = new java.util.ArrayList<>();
+                for (Ticket ticket : tickets) {
+                    if (ticket.getUser() != null && currentUserId.equals(ticket.getUser().getId())) {
+                        myTickets.add(ticket);
+                    }
+                }
+                callback.onCompleted(myTickets);
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+                callback.onFailed(e);
+            }
+        });
+    }
+
     /// generate a new id for a new ticket in the database
     /// @return a new id for the ticket
     /// @see #generateNewId(String)
