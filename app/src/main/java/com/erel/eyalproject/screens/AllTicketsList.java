@@ -44,7 +44,7 @@ public class AllTicketsList extends AppCompatActivity {
 
 
 
-        ticketAdapter = new TicketAdapter(new TicketAdapter.OnTicketClickListener() {
+        ticketAdapter = new TicketAdapter(0,new TicketAdapter.OnTicketClickListener() {
             @Override
             public void onTicketClick(Ticket ticket) {
                 Log.d(TAG, "Ticket clicked: " + ticket);

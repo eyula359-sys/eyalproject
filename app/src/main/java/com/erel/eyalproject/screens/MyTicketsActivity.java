@@ -24,6 +24,8 @@ public class MyTicketsActivity extends AppCompatActivity {
     private TicketAdapter ticketAdapter;
     private RecyclerView rvMyTickets;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +41,7 @@ public class MyTicketsActivity extends AppCompatActivity {
         rvMyTickets = findViewById(R.id.rv_my_tickets);
         rvMyTickets.setLayoutManager(new LinearLayoutManager(this));
 
-        ticketAdapter = new TicketAdapter(new TicketAdapter.OnTicketClickListener() {
+        ticketAdapter = new TicketAdapter( 1,new TicketAdapter.OnTicketClickListener() {
             @Override
             public void onTicketClick(Ticket ticket) {
                 Log.d(TAG, "Ticket clicked: " + ticket);

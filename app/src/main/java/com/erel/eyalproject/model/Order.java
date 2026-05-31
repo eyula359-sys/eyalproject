@@ -8,11 +8,24 @@ public class Order {
     protected Integer price;
     protected String date;
 
-    public Order(User buyer, String date, String id, Integer price, Ticket ticket) {
+    protected  String status;
+
+    public Order(String id,User buyer, String date,  Integer price, Ticket ticket) {
         this.buyer = buyer;
         this.date = date;
         this.id = id;
         this.price = price;
+        this.ticket = ticket;
+        this.status = "new";
+
+    }
+
+    public Order(String id, User buyer, String date, Integer price, Ticket ticket, String status) {
+        this.buyer = buyer;
+        this.date = date;
+        this.id = id;
+        this.price = price;
+        this.status = status;
         this.ticket = ticket;
     }
 
@@ -59,6 +72,14 @@ public class Order {
         this.ticket = ticket;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -67,6 +88,7 @@ public class Order {
                 ", ticket=" + ticket +
                 ", price=" + price +
                 ", date='" + date + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

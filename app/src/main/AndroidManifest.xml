@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Eyalproject">
         <activity
+            android:name=".screens.BuyerOrdersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.OwnerOrdersActivity"
+            android:exported="false" />
+        <activity
             android:name=".screens.FavoriteTicketsActivity"
             android:exported="false" />
         <activity

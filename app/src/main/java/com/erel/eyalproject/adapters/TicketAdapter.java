@@ -15,12 +15,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.erel.eyalproject.R;
+import com.erel.eyalproject.model.Order;
 import com.erel.eyalproject.model.Ticket;
+import com.erel.eyalproject.model.User;
+import com.erel.eyalproject.services.DatabaseService;
 import com.erel.eyalproject.services.FavoriteTickets;
 
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder> {
 
@@ -31,7 +37,27 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
     private final List<Ticket> ticketList = new ArrayList<>();
     private final OnTicketClickListener listener;
+
+
     private final boolean showFavoriteButton;
+
+    private int  myCode;
+
+
+    public TicketAdapter(int myCode, OnTicketClickListener listener, boolean showFavoriteButton) {
+        this.listener = listener;
+
+        this.myCode = myCode;
+        this.showFavoriteButton = showFavoriteButton;
+    }
+
+
+    public TicketAdapter(int myCode, OnTicketClickListener listener) {
+        this.listener = listener;
+
+        this.myCode = myCode;
+        this.showFavoriteButton = false;
+    }
 
     public TicketAdapter(OnTicketClickListener listener, boolean showFavoriteButton) {
         this.listener = listener;
@@ -54,6 +80,9 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Ticket ticket = ticketList.get(position);
         Context context = holder.itemView.getContext();
+
+
+       DatabaseService databaseService= DatabaseService.getInstance();
 
         holder.tvTicketName.setText(ticket.getGame().getGameName());
         holder.tvTicketPrice.setText("מחיר - " + ticket.getPrice());
@@ -87,27 +116,74 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
             return true;
         });
 
-        holder.btnGoChat.setOnClickListener(v ->
-                openWhatsApp(context, ticket.getUser().getPhone(), "היי, אני מתעניין בכרטיס למשחק 😊")
-        );
 
-        holder.btnPay.setOnClickListener(v -> {
-            String phone = ticket.getUser().getPhone();
-            Uri uri = Uri.parse("bit://send?phone=" + phone);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        if (myCode == 0) {
+            holder.btnGoChat.setOnClickListener(v ->
+                    openWhatsApp(context, ticket.getUser().getPhone(), "היי, אני מתעניין בכרטיס למשחק 😊")
+            );
 
-            if (intent.resolveActivity(context.getPackageManager()) != null) {
-                context.startActivity(intent);
-            } else {
-                Intent launchIntent = context.getPackageManager()
-                        .getLaunchIntentForPackage("com.bitplay");
-                if (launchIntent != null) {
-                    context.startActivity(launchIntent);
+            holder.btnPay.setOnClickListener(v -> {
+                String phone = ticket.getUser().getPhone();
+                Uri uri = Uri.parse("bit://send?phone=" + phone);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+
+
+                Order newOrder=new Order();
+                newOrder.setId(databaseService.generateOrderId());
+                newOrder.setStatus("payToCheck");
+                newOrder.setTicket(ticket);
+
+                String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+
+                  newOrder.setDate(currentDate);
+
+                databaseService.getUser(new DatabaseService.DatabaseCallback<User>() {
+                    @Override
+                    public void onCompleted(User user) {
+
+                        newOrder.setBuyer(user);
+
+                    }
+
+                    @Override
+                    public void onFailed(Exception e) {
+
+                    }
+                });
+
+                databaseService.createNewOrder(newOrder, new DatabaseService.DatabaseCallback<Void>() {
+                    @Override
+                    public void onCompleted(Void object) {
+
+                    }
+
+                    @Override
+                    public void onFailed(Exception e) {
+
+                    }
+                });
+
+
+
+                if (intent.resolveActivity(context.getPackageManager()) != null) {
+                    context.startActivity(intent);
                 } else {
-                    Toast.makeText(context, "אפליקציית Bit לא מותקנת", Toast.LENGTH_SHORT).show();
+                    Intent launchIntent = context.getPackageManager()
+                            .getLaunchIntentForPackage("com.bitplay");
+                    if (launchIntent != null) {
+                        context.startActivity(launchIntent);
+                    } else {
+                        Toast.makeText(context, "אפליקציית Bit לא מותקנת", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }
+
+        else{
+            holder.btnGoChat.setVisibility(View.GONE);
+            holder.btnPay.setVisibility(View.GONE);
+
+        }
     }
 
     private void updateFavoriteIcon(ImageButton btn, boolean isFavorite) {
@@ -161,6 +237,8 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
             tvTicketRow = itemView.findViewById(R.id.tvTicketRow);
             tvTicketPrice = itemView.findViewById(R.id.tvTicketPrice);
             tvTicketSection = itemView.findViewById(R.id.tvTicketSection);
+
+
             btnGoChat = itemView.findViewById(R.id.btnChat);
             btnPay = itemView.findViewById(R.id.btnPay);
             btnFavorite = itemView.findViewById(R.id.btnFavorite);

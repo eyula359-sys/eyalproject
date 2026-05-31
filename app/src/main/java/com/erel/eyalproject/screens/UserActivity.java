@@ -38,6 +38,11 @@ public class UserActivity extends AppCompatActivity {
 
         findViewById(R.id.btnFavoriteTickets).setOnClickListener(v ->
                 startActivity(new Intent(UserActivity.this, FavoriteTicketsActivity.class)));
+
+        findViewById(R.id.btnGoToOwner).setOnClickListener(v ->
+                startActivity(new Intent(UserActivity.this, OwnerOrdersActivity.class)));
+        findViewById(R.id.btnGoToBuyer).setOnClickListener(v ->
+                startActivity(new Intent(UserActivity.this, BuyerOrdersActivity.class)));
     }
 
     public void goUserProfile(View view) {

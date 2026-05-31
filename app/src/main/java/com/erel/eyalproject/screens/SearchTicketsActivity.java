@@ -59,10 +59,13 @@ public class SearchTicketsActivity extends AppCompatActivity {
 
         rvTickets.setLayoutManager(new LinearLayoutManager(this));
 
-        ticketAdapter = new TicketAdapter(new TicketAdapter.OnTicketClickListener() {
+        ticketAdapter = new TicketAdapter(0,new TicketAdapter.OnTicketClickListener() {
             @Override
             public void onTicketClick(Ticket ticket) {
                 Log.d(TAG, "Ticket clicked: " + ticket);
+
+
+
             }
 
             @Override

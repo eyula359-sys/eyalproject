@@ -40,6 +40,10 @@ public class DatabaseService {
     /// @see DatabaseService#readData(String)
     private static final String USERS_PATH = "users",
                                 TICKET_PATH = "ticket",
+
+                                BUYER_ORDER="buyerOrder",
+
+                                OWNER_ORDER="ownerorder",
                                 ORDER_PATH = "order",
                                 GAME_PATH = "game";
 
@@ -498,6 +502,10 @@ public class DatabaseService {
     /// @see Order
     public void createNewOrder(@NotNull final Order order, @Nullable final DatabaseCallback<Void> callback) {
         writeData(ORDER_PATH + "/" + order.getId(), order, callback);
+        writeData(OWNER_ORDER + "/"+ order.getTicket().getUser().getId()+"/" + order.getId(), order, callback);
+        writeData(BUYER_ORDER + "/" + order.getBuyer().getId()+"/"+order.getId(), order, callback);
+
+
     }
 
     /// get a order from the database
@@ -518,6 +526,48 @@ public class DatabaseService {
     public void getOrderList(@NotNull final DatabaseCallback<List<Order>> callback) {
         getDataList(ORDER_PATH, Order.class, callback);
     }
+
+
+
+    /// get a order from the database
+    /// @param orderId the id of the order to get
+    /// @param callback the callback to call when the operation is completed
+    ///                the callback will receive the order object
+    ///               if the operation fails, the callback will receive an exception
+    /// @see DatabaseCallback
+    /// @see Order
+    public void getOwnerOrder(@NotNull final String uid,@NotNull final String orderId, @NotNull final DatabaseCallback<Order> callback) {
+        getData(OWNER_ORDER + "/" + uid+"/"+ orderId, Order.class, callback);
+    }
+
+    /// get all the orders from the database
+    /// @param callback the callback to call when the operation is completed
+    ///               the callback will receive a list of order objects
+    ///
+    public void getOwnerOrderList(@NotNull final String uid,@NotNull final DatabaseCallback<List<Order>> callback) {
+        getDataList(OWNER_ORDER+"/"+uid, Order.class, callback);
+    }
+
+    /// get a order from the database
+    /// @param orderId the id of the order to get
+    /// @param callback the callback to call when the operation is completed
+    ///                the callback will receive the order object
+    ///               if the operation fails, the callback will receive an exception
+    /// @see DatabaseCallback
+    /// @see Order
+    public void getBuyerOrder(@NotNull final String uid, @NotNull final String orderId, @NotNull final DatabaseCallback<Order> callback) {
+        getData(BUYER_ORDER + "/" +uid+"/"+ orderId, Order.class, callback);
+    }
+
+    /// get all the orders from the database
+    /// @param callback the callback to call when the operation is completed
+    ///               the callback will receive a list of order objects
+    ///
+    public void getBuyerOrderList(@NotNull final String uid, @NotNull final DatabaseCallback<List<Order>> callback) {
+        getDataList(BUYER_ORDER+"/"+uid, Order.class, callback);
+    }
+
+
 
     /// get all the orders of a specific user from the database
     /// @param uid the id of the user to get the orders for
