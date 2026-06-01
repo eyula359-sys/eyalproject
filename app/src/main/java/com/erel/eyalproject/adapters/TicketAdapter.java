@@ -128,20 +128,24 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 
 
-                Order newOrder=new Order();
-                newOrder.setId(databaseService.generateOrderId());
-                newOrder.setStatus("payToCheck");
-                newOrder.setTicket(ticket);
-
-                String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
-
-                  newOrder.setDate(currentDate);
-
                 databaseService.getUser(new DatabaseService.DatabaseCallback<User>() {
                     @Override
                     public void onCompleted(User user) {
 
+
+
+                        Order newOrder=new Order();
+                        newOrder.setId(databaseService.generateOrderId());
+                        newOrder.setStatus("payToCheck");
+                        newOrder.setTicket(ticket);
+                        newOrder.setPrice((int) ticket.getPrice());
+
+                        String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+
+                        newOrder.setDate(currentDate);
+
                         newOrder.setBuyer(user);
+                        createNewOrder2(newOrder);
 
                     }
 
@@ -150,19 +154,6 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
                     }
                 });
-
-                databaseService.createNewOrder(newOrder, new DatabaseService.DatabaseCallback<Void>() {
-                    @Override
-                    public void onCompleted(Void object) {
-
-                    }
-
-                    @Override
-                    public void onFailed(Exception e) {
-
-                    }
-                });
-
 
 
                 if (intent.resolveActivity(context.getPackageManager()) != null) {
@@ -177,6 +168,8 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                     }
                 }
             });
+
+
         }
 
         else{
@@ -184,6 +177,8 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
             holder.btnPay.setVisibility(View.GONE);
 
         }
+
+
     }
 
     private void updateFavoriteIcon(ImageButton btn, boolean isFavorite) {
@@ -259,4 +254,24 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
             Toast.makeText(context, "לא ניתן לפתוח WhatsApp", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void createNewOrder2(Order order) {
+
+        DatabaseService.getInstance().createNewOrder(order, new DatabaseService.DatabaseCallback<Void>() {
+            @Override
+            public void onCompleted(Void object) {
+
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+
+            }
+        });
+
+
+    }
+
+
+
 }

@@ -70,7 +70,7 @@ public class BuyerOrdersActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        DatabaseService.getInstance().getOwnerOrderList(userId,new DatabaseService.DatabaseCallback<List<Order>>() {
+        DatabaseService.getInstance().getBuyerOrderList(userId,new DatabaseService.DatabaseCallback<List<Order>>() {
             @Override
             public void onCompleted(List<Order> orders) {
                 if(orders!=null) {

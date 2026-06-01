@@ -32,6 +32,8 @@ public class OwnerOrdersActivity extends AppCompatActivity {
     FirebaseAuth auth;
     String userId;
 
+    DatabaseService databaseService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,7 @@ public class OwnerOrdersActivity extends AppCompatActivity {
             return insets;
         });
 
+        databaseService=DatabaseService.getInstance();
         auth=FirebaseAuth.getInstance();
         userId=auth.getUid();
 
@@ -53,11 +56,45 @@ public class OwnerOrdersActivity extends AppCompatActivity {
             @Override
             public void onOrderClick(Order order) {
                 Log.d(TAG, "Order clicked: " + order);
+
+
+
             }
 
             @Override
             public void onLongOrderClick(Order order) {
                 Log.d(TAG, "Order long clicked: " + order);
+
+                order.setStatus("Approve");
+
+                order.getTicket().setIs_available(false);
+                databaseService.updateOrder(order, new DatabaseService.DatabaseCallback<Void>() {
+                    @Override
+                    public void onCompleted(Void object) {
+
+                    }
+
+                    @Override
+                    public void onFailed(Exception e) {
+
+                    }
+                });
+
+                databaseService.updateTicket(order.getTicket(), new DatabaseService.DatabaseCallback<Void>() {
+                    @Override
+                    public void onCompleted(Void object) {
+
+
+
+                    }
+
+                    @Override
+                    public void onFailed(Exception e) {
+
+                    }
+                });
+
+
             }
         });
 
@@ -70,7 +107,7 @@ public class OwnerOrdersActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        DatabaseService.getInstance().getOwnerOrderList(userId,new DatabaseService.DatabaseCallback<List<Order>>() {
+        databaseService.getOwnerOrderList(userId,new DatabaseService.DatabaseCallback<List<Order>>() {
             @Override
             public void onCompleted(List<Order> orders) {
                 Log.d(TAG, "My orders loaded: " + orders.size());

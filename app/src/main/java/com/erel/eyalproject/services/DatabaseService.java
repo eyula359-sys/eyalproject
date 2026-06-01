@@ -47,6 +47,7 @@ public class DatabaseService {
                                 ORDER_PATH = "order",
                                 GAME_PATH = "game";
 
+
     /// callback interface for database operations
     /// @param <T> the type of the object to return
     /// @see DatabaseCallback#onCompleted(Object)
@@ -430,6 +431,11 @@ public class DatabaseService {
         writeData(TICKET_PATH + "/" + ticket.getTicketId(), ticket, callback);
     }
 
+
+
+    public void updateTicket(@NotNull final Ticket ticket, @Nullable final DatabaseCallback<Void> callback) {
+        writeData(TICKET_PATH + "/" + ticket.getTicketId(), ticket, callback);
+    }
     /// get a ticket from the database
     /// @param ticketId the id of the ticket to get
     /// @param callback the callback to call when the operation is completed
@@ -501,6 +507,15 @@ public class DatabaseService {
     /// @see DatabaseCallback
     /// @see Order
     public void createNewOrder(@NotNull final Order order, @Nullable final DatabaseCallback<Void> callback) {
+        writeData(ORDER_PATH + "/" + order.getId(), order, callback);
+        writeData(OWNER_ORDER + "/"+ order.getTicket().getUser().getId()+"/" + order.getId(), order, callback);
+        writeData(BUYER_ORDER + "/" + order.getBuyer().getId()+"/"+order.getId(), order, callback);
+
+
+    }
+
+
+    public void updateOrder(@NotNull final Order order, @Nullable final DatabaseCallback<Void> callback) {
         writeData(ORDER_PATH + "/" + order.getId(), order, callback);
         writeData(OWNER_ORDER + "/"+ order.getTicket().getUser().getId()+"/" + order.getId(), order, callback);
         writeData(BUYER_ORDER + "/" + order.getBuyer().getId()+"/"+order.getId(), order, callback);

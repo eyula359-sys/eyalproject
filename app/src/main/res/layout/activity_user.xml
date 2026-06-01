@@ -115,7 +115,7 @@
         android:layout_marginBottom="64dp"
         android:backgroundTint="#E4360E"
         android:fontFamily="@font/secular_one_regular"
-        android:text="הכרטיסים שמכרתי"
+        android:text="הכרטיסים שקניתי"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

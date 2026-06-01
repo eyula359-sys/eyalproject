@@ -79,6 +79,8 @@ public class User {
     public User() {
     }
 
+
+
     public String getEmail() {
         return email;
     }
@@ -89,6 +91,10 @@ public class User {
 
     public String getFname() {
         return fname;
+    }
+
+    public String getFullname() {
+        return this.fname+" "+this.lname;
     }
 
     public void setFname(String fname) {

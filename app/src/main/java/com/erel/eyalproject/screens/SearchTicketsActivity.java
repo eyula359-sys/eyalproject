@@ -123,7 +123,14 @@ public class SearchTicketsActivity extends AppCompatActivity {
             public void onCompleted(List<Ticket> tickets) {
                 Log.d(TAG, "Tickets loaded: " + tickets.size());
                 allTickets.clear();
-                allTickets.addAll(tickets);
+
+
+
+                for (Ticket ticket : tickets) {
+                    if (ticket.getIs_available() && ticket.getGame().isNotExpired())
+
+                        allTickets.add(ticket);
+                    }
                 ticketAdapter.setTicketList(allTickets);
             }
 
@@ -135,6 +142,8 @@ public class SearchTicketsActivity extends AppCompatActivity {
     }
 
     private void filterTicketsByGame(String gameId) {
+
+
         ArrayList<Ticket> filteredTickets = new ArrayList<>();
         for (Ticket ticket : allTickets) {
             if (ticket.getGame() != null &&

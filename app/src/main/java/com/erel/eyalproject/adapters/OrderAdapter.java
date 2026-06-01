@@ -77,8 +77,8 @@ public class OrderAdapter extends RecyclerView.Adapter<com.erel.eyalproject.adap
 
                 holder.tvOrderTicket.setText(order.getTicket().getGame().getGameName());
                 holder.tvOrderPrice.setText("מחיר - " + order.getPrice());
-              //  holder.tvOrderOwner.setText("מושב/ים מס' - " + order.getTicket().getUser().getFname());
-              //  holder.tvOrderBuyer.setText("אזור - " + order.getBuyer().getFname());
+                holder.tvOrderOwner.setText("מושב/ים מס' - " + order.getTicket().getUser().getFullname());
+              holder.tvOrderBuyer.setText("אזור - " + order.getBuyer().getFullname());
                 holder.tvOrderDate.setText("שורה - " + order.getDate());
                 holder.tvOrderStatus.setText("שורה - " + order.getStatus());
 
