@@ -19,6 +19,8 @@ import com.erel.eyalproject.adapters.TicketAdapter;
 import com.erel.eyalproject.model.Game;
 import com.erel.eyalproject.model.Ticket;
 import com.erel.eyalproject.services.DatabaseService;
+import com.google.firebase.auth.FirebaseAuth;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,9 +128,11 @@ public class SearchTicketsActivity extends AppCompatActivity {
 
 
 
+                String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 for (Ticket ticket : tickets) {
-                    if (ticket.getIs_available() && ticket.getGame().isNotExpired())
-
+                    boolean isNotMine = ticket.getUser() == null ||
+                            !currentUserId.equals(ticket.getUser().getId());
+                    if (ticket.getIs_available() && isNotMine)
                         allTickets.add(ticket);
                     }
                 ticketAdapter.setTicketList(allTickets);

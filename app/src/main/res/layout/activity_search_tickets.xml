@@ -8,6 +8,7 @@
     android:background="@drawable/fieldimage"
     tools:context=".screens.SearchTicketsActivity">
 
+
     <TextView
         android:id="@+id/searchTick"
         android:layout_width="317dp"
@@ -38,6 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/searchTick" />
 
     <androidx.recyclerview.widget.RecyclerView
+
         android:id="@+id/rv_specificticket_list"
         android:layout_width="411dp"
         android:layout_height="458dp"

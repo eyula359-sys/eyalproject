@@ -63,38 +63,31 @@ public class OwnerOrdersActivity extends AppCompatActivity {
 
             @Override
             public void onLongOrderClick(Order order) {
-                Log.d(TAG, "Order long clicked: " + order);
-
-                order.setStatus("Approve");
-
-                order.getTicket().setIs_available(false);
-                databaseService.updateOrder(order, new DatabaseService.DatabaseCallback<Void>() {
-                    @Override
-                    public void onCompleted(Void object) {
-
-                    }
-
-                    @Override
-                    public void onFailed(Exception e) {
-
-                    }
-                });
-
-                databaseService.updateTicket(order.getTicket(), new DatabaseService.DatabaseCallback<Void>() {
-                    @Override
-                    public void onCompleted(Void object) {
-
-
-
-                    }
-
-                    @Override
-                    public void onFailed(Exception e) {
-
-                    }
-                });
-
-
+                if (order.getStatus().equals("אושר") || order.getStatus().equals("נדחה")) {
+                    android.widget.Toast.makeText(OwnerOrdersActivity.this,
+                            "לא ניתן לשנות הזמנה שכבר טופלה",
+                            android.widget.Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                new android.app.AlertDialog.Builder(OwnerOrdersActivity.this)
+                        .setTitle("טיפול בהזמנה")
+                        .setMessage("מה ברצונך לעשות עם ההזמנה?")
+                        .setPositiveButton("אשר", (dialog, which) -> {
+                            order.setStatus("אושר");
+                            order.getTicket().setIs_available(false);
+                            databaseService.updateOrder(order, null);
+                            databaseService.updateTicket(order.getTicket(), null);
+                            orderAdapter.updateOrder(order);
+                        })
+                        .setNegativeButton("דחה", (dialog, which) -> {
+                            order.setStatus("נדחה");
+                            order.getTicket().setIs_available(true);
+                            databaseService.updateOrder(order, null);
+                            databaseService.updateTicket(order.getTicket(), null);
+                            orderAdapter.updateOrder(order);
+                        })
+                        .setNeutralButton("ביטול", null)
+                        .show();
             }
         });
 

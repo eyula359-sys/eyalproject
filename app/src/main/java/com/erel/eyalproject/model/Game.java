@@ -28,7 +28,7 @@ public class Game {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             Date gameDate = sdf.parse(this.date);
-            return gameDate != null ; //&&(! gameDate.before(new Date()) );
+            return gameDate != null && !gameDate.before(new Date());
         } catch (ParseException e) {
             return false;
         }

@@ -131,8 +131,7 @@ public class AddTicket extends AppCompatActivity implements View.OnClickListener
             return;
         }
 
-        // ולידציה — תאריך המשחק לא עבר
-        if (selectedGame.isNotExpired()) {
+        if (!selectedGame.isNotExpired()) {
             Toast.makeText(this, "לא ניתן להוסיף כרטיס למשחק שכבר עבר", Toast.LENGTH_LONG).show();
             return;
         }

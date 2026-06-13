@@ -10,15 +10,19 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
-        android:layout_marginBottom="29dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/edittext_rounded_bg"
         android:fontFamily="@font/secular_one_regular"
+        android:gravity="center"
         android:text="דף משתמש"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="60dp"
+        android:textSize="50dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAddTicket"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,9 +30,9 @@
 
     <Button
         android:id="@+id/btnAddTicket"
-        android:layout_width="193dp"
+        android:layout_width="220dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="12dp"
         android:backgroundTint="#E4360E"
         android:fontFamily="@font/secular_one_regular"
         android:text="הוספת כרטיס למכירה"
@@ -40,9 +44,9 @@
 
     <Button
         android:id="@+id/btnSearchTicket"
-        android:layout_width="193dp"
+        android:layout_width="220dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="31dp"
+        android:layout_marginBottom="22dp"
         android:backgroundTint="#E4360E"
         android:fontFamily="@font/secular_one_regular"
         android:text="חיפוש כרטיסים"
@@ -54,9 +58,9 @@
 
     <Button
         android:id="@+id/btnMyProfile"
-        android:layout_width="193dp"
+        android:layout_width="220dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="12dp"
         android:backgroundTint="#E4360E"
         android:fontFamily="@font/secular_one_regular"
         android:onClick="goUserProfile"
@@ -69,9 +73,9 @@
 
     <Button
         android:id="@+id/btnMyTickets"
-        android:layout_width="193dp"
+        android:layout_width="220dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="21dp"
         android:backgroundTint="#E4360E"
         android:fontFamily="@font/secular_one_regular"
         android:text="הכרטיסים שהוספתי"
@@ -83,43 +87,45 @@
 
     <Button
         android:id="@+id/btnFavoriteTickets"
-        android:layout_width="193dp"
+        android:layout_width="220dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="65dp"
         android:backgroundTint="#E4360E"
         android:fontFamily="@font/secular_one_regular"
         android:text="כרטיסים מועדפים ❤️"
         android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnGoToOwner"
+        app:layout_constraintBottom_toTopOf="@+id/btnGoToBuyer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMyTickets" />
 
     <Button
-        android:id="@+id/btnGoToOwner"
-        android:layout_width="193dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="25dp"
-        android:backgroundTint="#E4360E"
-        android:fontFamily="@font/secular_one_regular"
-        android:text="הכרטיסים שמכרתי"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnGoToBuyer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnFavoriteTickets" />
-
-    <Button
         android:id="@+id/btnGoToBuyer"
-        android:layout_width="193dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="64dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="51dp"
         android:backgroundTint="#E4360E"
         android:fontFamily="@font/secular_one_regular"
         android:text="הכרטיסים שקניתי"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnGoToOwner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGoToOwner" />
+        app:layout_constraintTop_toBottomOf="@+id/btnFavoriteTickets" />
+
+    <Button
+        android:id="@+id/btnGoToOwner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="54dp"
+        android:backgroundTint="#E4360E"
+        android:fontFamily="@font/secular_one_regular"
+        android:text="הכרטיסים שמכרתי"
+        android:textSize="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnGoToBuyer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnGoToBuyer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

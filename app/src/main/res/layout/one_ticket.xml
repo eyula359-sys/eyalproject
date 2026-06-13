@@ -1,120 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="280dp">
+    android:layout_height="280dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
-    <TextView
-        android:id="@+id/tvTicketName"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="148dp"
-        android:layout_marginBottom="9dp"
-        android:fontFamily="@font/secular_one_regular"
-        android:text="TextView"
-        android:textColor="@color/white"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvTicketPrice"
-        app:layout_constraintEnd_toStartOf="@+id/btnFavorite"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@tools:sample/full_names" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/btnFavorite"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:background="@android:color/transparent"
-        android:src="@android:drawable/btn_star_big_off"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvTicketName"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tvTicketName"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="148dp"
+            android:layout_marginBottom="9dp"
+            android:fontFamily="@font/secular_one_regular"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvTicketPrice"
+            app:layout_constraintEnd_toStartOf="@+id/btnFavorite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/full_names" />
 
-    <TextView
-        android:id="@+id/tvTicketPrice"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="16dp"
-        android:text="TextView"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/tvTicketSeat"
-        app:layout_constraintEnd_toStartOf="@+id/tvTicketRow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTicketName" />
+        <ImageButton
+            android:id="@+id/btnFavorite"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/btn_star_big_off"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvTicketName"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvTicketSection"
-        android:layout_width="0dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="TextView"
-        android:textColor="@color/white"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvTicketSeat"
-        app:layout_constraintEnd_toStartOf="@+id/tvTicketSeat"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tvTicketPrice"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="16dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/tvTicketSeat"
+            app:layout_constraintEnd_toStartOf="@+id/tvTicketRow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTicketName" />
 
-    <TextView
-        android:id="@+id/tvTicketRow"
-        android:layout_width="0dp"
-        android:layout_height="39dp"
-        android:layout_marginEnd="171dp"
-        android:text="TextView"
-        android:textColor="@color/white"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvTicketPrice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvTicketPrice" />
+        <TextView
+            android:id="@+id/tvTicketSection"
+            android:layout_width="0dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvTicketSeat"
+            app:layout_constraintEnd_toStartOf="@+id/tvTicketSeat"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tvTicketSeat"
-        android:layout_width="179dp"
-        android:layout_height="46dp"
-        android:layout_marginEnd="102dp"
-        android:layout_marginBottom="30dp"
-        android:text="TextView"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/btnPay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvTicketSection"
-        app:layout_constraintTop_toBottomOf="@+id/tvTicketPrice" />
+        <TextView
+            android:id="@+id/tvTicketRow"
+            android:layout_width="0dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="171dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvTicketPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvTicketPrice" />
 
-    <Button
-        android:id="@+id/btnChat"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="@font/secular_one_regular"
-        android:text="צור קשר"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnPay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnPay" />
+        <TextView
+            android:id="@+id/tvTicketSeat"
+            android:layout_width="179dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="102dp"
+            android:layout_marginBottom="30dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/btnPay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvTicketSection"
+            app:layout_constraintTop_toBottomOf="@+id/tvTicketPrice" />
 
-    <Button
-        android:id="@+id/btnPay"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginBottom="18dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="@font/secular_one_regular"
-        android:text="תשלום בביט"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnChat"
-        app:layout_constraintTop_toBottomOf="@+id/tvTicketSeat" />
+        <Button
+            android:id="@+id/btnChat"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="11dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/secular_one_regular"
+            android:text="צור קשר"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnPay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnPay" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btnPay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="84dp"
+            android:layout_marginBottom="18dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/secular_one_regular"
+            android:text="תשלום בביט"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnChat"
+            app:layout_constraintTop_toBottomOf="@+id/tvTicketSeat" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

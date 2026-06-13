@@ -76,11 +76,12 @@ public class OrderAdapter extends RecyclerView.Adapter<com.erel.eyalproject.adap
             if(order!=null) {
 
                 holder.tvOrderTicket.setText(order.getTicket().getGame().getGameName());
-                holder.tvOrderPrice.setText("מחיר - " + order.getPrice());
-                holder.tvOrderOwner.setText("מושב/ים מס' - " + order.getTicket().getUser().getFullname());
-              holder.tvOrderBuyer.setText("אזור - " + order.getBuyer().getFullname());
-                holder.tvOrderDate.setText("שורה - " + order.getDate());
-                holder.tvOrderStatus.setText("שורה - " + order.getStatus());
+                holder.tvOrderOwner.setText("מוכר - " + order.getTicket().getUser().getFullname());
+                holder.tvOrderPrice.setText("מחיר - " + order.getTicket().getPrice());
+                holder.tvOrderPhone.setText("טלפון מוכר - " + order.getTicket().getUser().getPhone());
+                holder.tvOrderBuyerPhone.setText("טלפון קונה - " + order.getBuyer().getPhone());
+                holder.tvOrderDate.setText("תאריך הזמנה - " + order.getDate());
+                holder.tvOrderStatus.setText("סטטוס - " + order.getStatus());
 
 
                 holder.itemView.setOnClickListener(v -> {
@@ -129,14 +130,14 @@ public class OrderAdapter extends RecyclerView.Adapter<com.erel.eyalproject.adap
         }
 
         static class ViewHolder extends RecyclerView.ViewHolder {
-            TextView tvOrderTicket, tvOrderOwner, tvOrderBuyer, tvOrderPrice, tvOrderDate, tvOrderStatus;
-
+            TextView tvOrderTicket, tvOrderOwner, tvOrderPhone, tvOrderBuyerPhone, tvOrderPrice, tvOrderDate, tvOrderStatus;
 
             ViewHolder(@NonNull View itemView) {
                 super(itemView);
                 tvOrderTicket = itemView.findViewById(R.id.tvGameTicket);
                 tvOrderOwner = itemView.findViewById(R.id.tvOrderOwner);
-                tvOrderBuyer = itemView.findViewById(R.id.tvOrderBuyer);
+                tvOrderPhone = itemView.findViewById(R.id.tvOrderPhone);
+                tvOrderBuyerPhone = itemView.findViewById(R.id.tvOrderBuyerPhone);
                 tvOrderPrice = itemView.findViewById(R.id.tvOrderPrice);
                 tvOrderDate = itemView.findViewById(R.id.tvOrderDate);
                 tvOrderStatus = itemView.findViewById(R.id.tvOrderStatus);

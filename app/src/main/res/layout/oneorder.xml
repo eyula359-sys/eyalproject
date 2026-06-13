@@ -26,12 +26,18 @@
             android:id="@+id/tvOrderOwner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"/>
 
         <TextView
-            android:id="@+id/tvOrderBuyer"
+            android:id="@+id/tvOrderPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tvOrderBuyerPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
